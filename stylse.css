@@ -2,11 +2,12 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: 'Muli', sans-serif;
-    margin: 0;
     background-color: black;
     color: #fff;
 }
@@ -14,11 +15,13 @@ body {
 .titlepage {
     text-align: center;
     margin-top: 20px;
+    padding: 10px;
 }
 
 .container {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Permite que os painéis sejam quebrados em múltiplas linhas em telas pequenas */
     width: 90vw;
     margin: 0 auto; /* Centraliza o container */
 }
@@ -27,27 +30,29 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 80vh;
+    height: 50vh; /* Reduz a altura para que se ajuste melhor em telas menores */
     border-radius: 20px;
     color: #fff;
     cursor: pointer;
-    flex: 0.5;
+    flex: 1 1 200px; /* Ajusta os painéis para ocupar o espaço disponível */
     margin: 10px;
     position: relative;
     transition: flex 0.7s ease-in;
+    min-width: 280px; /* Garante que o painel tenha um tamanho mínimo razoável */
 }
 
 .panel h3 {
-    font-size: 50px;
+    font-size: 24px;
     position: absolute;
     bottom: 20px;
-    left: 50px;
+    left: 20px;
     margin: 0;
     opacity: 0;
+    transition: opacity 0.3s ease-in;
 }
 
 .panel.active {
-    flex: 5;
+    flex: 3; /* Ajusta o fator de expansão em telas menores */
 }
 
 .panel.active h3 {
@@ -55,12 +60,33 @@ body {
     transition: opacity 0.3s ease-in 0.4s;
 }
 
+@media (max-width: 768px) {
+    .panel {
+        height: 40vh; /* Ajuste de altura para telas médias */
+        flex: 1 1 100%; /* Cada painel ocupa 100% da largura em telas médias */
+    }
+
+    .panel.active {
+        flex: 1 1 100%; /* Não expande tanto em telas menores */
+    }
+
+    .panel h3 {
+        font-size: 20px; /* Reduz o tamanho do texto em telas menores */
+    }
+}
+
 @media (max-width: 480px) {
     .container {
         width: 100vw;
     }
-    
-    .panel:nth-of-type(4), .panel:nth-of-type(5) {
-        display: none;
+
+    .panel {
+        height: 35vh; /* Ajuste de altura para telas pequenas */
+        flex: 1 1 100%; /* Cada painel ocupa 100% da largura em telas pequenas */
+    }
+
+    .panel h3 {
+        font-size: 18px; /* Reduz ainda mais o tamanho do texto em telas menores */
+        left: 10px;
     }
 }
