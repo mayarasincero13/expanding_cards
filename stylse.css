@@ -10,6 +10,7 @@ body {
     font-family: 'Muli', sans-serif;
     background-color: black;
     color: #fff;
+    overflow-x: hidden; /* Evita a rolagem horizontal em telas menores */
 }
 
 .titlepage {
@@ -60,6 +61,7 @@ body {
     transition: opacity 0.3s ease-in 0.4s;
 }
 
+/* Estilo para telas médias (tablets) */
 @media (max-width: 768px) {
     .panel {
         height: 40vh; /* Ajuste de altura para telas médias */
@@ -75,9 +77,10 @@ body {
     }
 }
 
+/* Estilo para telas pequenas (smartphones) */
 @media (max-width: 480px) {
     .container {
-        width: 100vw;
+        width: 100vw; /* Garante que o container ocupe a largura total da tela */
     }
 
     .panel {
